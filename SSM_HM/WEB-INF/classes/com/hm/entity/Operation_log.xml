@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hm.entity.Operation_log">
+
+	<resultMap type="Operation_log" id="operation_logMap">
+		<id column="id" property="id"/>
+		<result column="operation_employee" property="operation_employee"/>
+		<result column="operation_date" property="operation_date"/>
+		<result column="operation_context" property="operation_context"/>
+		<result column="operation_item" property="operation_item"/>
+		<result column="operation_type" property="operation_type"/>
+	</resultMap>
+	
+	<sql id="mysql">
+		id,operation_employee,operation_date,operation_context,operation_item,operation_type
+	</sql>
+	
+	<!-- 根据id查询User -->
+	<!-- id:当前sql语句的唯一标示  parameterType：参数类型 resultType:结果类型(返回值类型)-->
+	<select id="selectOperation_logById" parameterType="Integer" resultMap="operation_logMap">
+		select <include refid="mysql"/> from operation_log where id = #{id}
+	</select>
+	
+	<!-- 查询所有User -->
+	<select id="selectAllOperation_logs" resultType="Operation_log">
+		select <include refid="mysql"/> from operation_log
+	</select>
+	
+	<!-- 根据id查询User，返回值为：Map -->
+	<select id="selectOperation_logByIdForMap" parameterType="string" resultType="hashmap">
+		select <include refid="mysql"/> from operation_log where id = #{id}
+	</select>
+	
+	<!-- 动态sql -->
+	<select id="selectOperation_logByCondition" parameterType="Operation_log" resultType="Operation_log">
+		select id,operation_employee,operation_date,operation_context,operation_item,operation_type from operation_log where 1=1
+		<if test="id != 0">
+			and id = #{id}
+		</if>
+		<!-- userName指的是实体的属性 -->
+		<if test="operation_employee != null">
+			and operation_employee = #{operation_employee}
+		</if>
+		<if test="operation_date != null">
+			and operation_date = #{operation_date}
+		</if>
+		<if test="operation_context != null">
+			and operation_context = #{operation_context}
+		</if>
+		<if test="operation_item != null">
+			and operation_item = #{operation_item}
+		</if>
+		<if test="operation_type != null">
+			and operation_type = #{operation_type}
+		</if>
+	</select>
+	
+	<!-- 动态sql 
+	<select id="selectUserByCondition2" parameterType="User" resultType="User">
+		select id,name as userName ,address from user
+		<where>
+			<if test="id != null">
+			   id = #{id}
+			</if>
+			 userName指的是实体的属性
+			<if test="userName != null">
+				and name = #{userName}
+			</if>
+			<if test="address != null">
+				and address = #{address}
+			</if>
+		</where>
+	</select>
+	-->
+	
+	<!-- 插入User -->
+	<insert id="insertOperation_log" parameterType="Operation_log">
+		insert into operation_log (operation_employee,operation_date,operation_context,operation_item,operation_type) values (#{operation_employee},#{operation_date},#{operation_context},#{operation_item},#{operation_type});
+	</insert>
+	
+	<!-- 插入User 参数为hashmap-->
+	<insert id="insertOperation_logForMap" parameterType="hashmap">
+		insert into operation_log (operation_employee,operation_date,operation_context,operation_item,operation_type) values (#{operation_employee},#{operation_date},#{operation_context},#{operation_item},#{operation_type});
+	</insert>
+	
+	<!-- 根据id删除User -->
+	<delete id="deleteOperation_logById" parameterType="string">
+		delete from operation_log where id = #{id}
+	</delete>
+	
+	<!-- 根据id更新User -->
+	<update id="updateOperation_logById" parameterType="Operation_log">
+		update operation_log set operation_employee = #{operation_employee},operation_date = #{operation_date},operation_context = #{operation_context},operation_item = #{operation_item},operation_type = #{operation_type} where id = #{id}
+	</update>
+	
+	<!-- 动态更新user -->
+	<update id="updateOperation_logByCondition" parameterType="Operation_log">
+		update operation_log 
+		<set>
+			<if test="operation_employee != null">
+				operation_employee = #{operation_employee},
+			</if>
+			<if test="operation_date != null">
+				operation_date = #{operation_date}
+			</if>
+			<if test="category_id != null">
+				operation_context = #{operation_context}
+			</if>
+			<if test="category_id != null">
+				operation_item = #{operation_item}
+			</if>
+		</set>
+		where id = #{id}
+	</update>
+	
+	<!-- 根据id更新User 参数为map
+	<update id="updateUserByIdForMap" parameterType="hashmap">
+		update user set name = #{userName},address = #{address} where id = #{id}
+	</update>
+	-->
+	
+</mapper>

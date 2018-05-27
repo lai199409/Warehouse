@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+				         http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+				         http://www.springframework.org/schema/context
+				         http://www.springframework.org/schema/context/spring-context-3.0.xsd
+				         http://www.springframework.org/schema/tx
+				         http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
+				         http://www.springframework.org/schema/aop 
+				         http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+	
+	<bean id="userDao" class="com.hm.dao.impl.UserDaoImpl">
+		<property name="sqlSessionFactory" ref="sf"></property>
+	</bean>
+	
+	<bean id="cylinderDao" class="com.hm.dao.impl.CylinderDaoImpl">
+		<property name="sqlSessionFactory" ref="sf"></property>
+	</bean>
+	
+	<bean id="operation_logDao" class="com.hm.dao.impl.Operation_logDaoImpl">
+		<property name="sqlSessionFactory" ref="sf"></property>
+	</bean>
+	
+	<bean id="outgoing_recordDao" class="com.hm.dao.impl.Outgoing_recordDaoImpl">
+		<property name="sqlSessionFactory" ref="sf"></property>
+	</bean>
+	
+	<bean id="product_classDao" class="com.hm.dao.impl.Product_classDaoImpl">
+		<property name="sqlSessionFactory" ref="sf"></property>
+	</bean>
+	
+	<bean id="purchasersDao" class="com.hm.dao.impl.PurchasersDaoImpl">
+		<property name="sqlSessionFactory" ref="sf"></property>
+	</bean>
+	
+	<bean id="seal_componentsDao" class="com.hm.dao.impl.Seal_componentsDaoImpl">
+		<property name="sqlSessionFactory" ref="sf"></property>
+	</bean>
+	
+	<bean id="solenoid_valveDao" class="com.hm.dao.impl.Solenoid_valveDaoImpl">
+		<property name="sqlSessionFactory" ref="sf"></property>
+	</bean>
+	
+	<bean id="storage_recordDao" class="com.hm.dao.impl.Storage_recordDaoImpl">
+		<property name="sqlSessionFactory" ref="sf"></property>
+	</bean>
+	
+	<bean id="supplierDao" class="com.hm.dao.impl.SupplierDaoImpl">
+		<property name="sqlSessionFactory" ref="sf"></property>
+	</bean>
+	
+	
+</beans>

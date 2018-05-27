@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<!--
+	在主页面展示，由于主页面已经有public.js引入了，所以不需要再引入
+	 <script type="text/javascript" src="../../public/public.js"></script>
+ -->
+  <script type="text/javascript" src="/HM/js/loginfilter.js" ></script>
+  <script type="text/javascript" src="/HM/js/sys.js" ></script>
+</head>
+<body>
+
+	
+	<div class="container-fluid" id="left">
+		<div class="row clearfix">
+			<div class="col-md-11 column">
+			</div>
+			<div class="col-md-1 column">
+				 <button type="button" class="btn btn-default" id="returnindex"><i class="glyphicon glyphicon-arrow-left"></i>返回</button>
+			</div>
+		</div>
+		<div class="row clearfix">
+			<div class="col-md-12 column">
+				<table class="table">
+					<thead>
+						<tr>
+							<th>
+								<i class="glyphicon glyphicon-list"></i>编号
+							</th>
+							<th>
+								<i class="glyphicon glyphicon-list-alt"></i>内容
+							</th>
+							<th>
+								<i class="glyphicon glyphicon-user"></i>操作人员
+							</th>
+							<th>
+								<i class="glyphicon glyphicon-time"></i>记录时间
+							</th>
+						</tr>
+					</thead>
+					<tbody id="displaylogtable">
+						<tr>
+							<td>
+								1
+							</td>
+							<td>
+								test
+							</td>
+							<td>
+								test
+							</td>
+							<td>
+								test
+							</td>
+						</tr>
+						
+						
+						
+					</tbody>
+				</table>
+				
+				<!--<ul class="pagination">
+					<li>
+						 <a href="#">上一页</a>
+					</li>
+					<li>
+						 <a href="#">1</a>
+					</li>
+					<li>
+						 <a href="#">2</a>
+					</li>
+					<li>
+						 <a href="#">3</a>
+					</li>
+					<li>
+						 <a href="#">4</a>
+					</li>
+					<li>
+						 <a href="#">5</a>
+					</li>
+					<li>
+						 <a href="#">6</a>
+					</li>
+					<li>
+						 <a href="#">7</a>
+					</li>
+					<li>
+						 <a href="#">8</a>
+					</li>
+					<li>
+						 <a href="#">9</a>
+					</li>
+					<li>
+						 <a href="#">10</a>
+					</li>
+					<li>
+						 <a href="#">下一页</a>
+					</li>
+				</ul>-->
+			</div>
+		</div>
+	</div>
+
+	<script type="text/javascript">
+       $(document).ready(function(){
+    	   $("#returnindex").click(function(){
+    		  // $("#leftview").load("./storagemanagement/storage.html");
+    		  window.location.reload();
+    	   });
+        });
+	</script>
+
+</body>
+</html>

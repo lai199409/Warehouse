@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hm.entity.User">
+
+	<resultMap type="User" id="userMap">
+		<id column="id" property="id"/>
+		<result column="username" property="username"/>
+		<result column="password" property="password"/>
+		<result column="name" property="name"/>
+		<result column="user_tel" property="user_tel"/>
+	</resultMap>
+	
+	<sql id="mysql">
+		id,username,password,name,user_tel
+	</sql>
+	
+	<!-- 根据id查询User -->
+	<!-- id:当前sql语句的唯一标示  parameterType：参数类型 resultType:结果类型(返回值类型)-->
+	<select id="selectUserById" parameterType="string" resultMap="userMap">
+		select <include refid="mysql"/> from user where id = #{id}
+	</select>
+	
+	<!-- 查询所有User -->
+	<select id="selectAllUsers" resultType="User">
+		select <include refid="mysql"/> from user
+	</select>
+	
+	<!-- 根据id查询User，返回值为：Map -->
+	<select id="selectUserByIdForMap" parameterType="string" resultType="hashmap">
+		select id,username,password,name,user_tel from user where id = #{id}
+	</select>
+	
+	<!-- 动态sql -->
+	<select id="selectUserByCondition" parameterType="User" resultType="User">
+		select id,username,password,name,user_tel from user where 1=1
+		<if test="id != 0">
+			and id = #{id}
+		</if>
+		<!-- userName指的是实体的属性 -->
+		<if test="username != null">
+			and username = #{username}
+		</if>
+		<if test="password != null">
+			and password = #{password}
+		</if>
+		<if test="name != null">
+			and name = #{name}
+		</if>
+		<if test="user_tel != null">
+			and user_tel = #{user_tel}
+		</if>
+	</select>
+	
+	<!-- 动态sql 
+	<select id="selectUserByCondition2" parameterType="User" resultType="User">
+		select id,name as userName ,address from user
+		<where>
+			<if test="id != null">
+			   id = #{id}
+			</if>
+			 userName指的是实体的属性
+			<if test="userName != null">
+				and name = #{userName}
+			</if>
+			<if test="address != null">
+				and address = #{address}
+			</if>
+		</where>
+	</select>
+	-->
+	
+	<!-- 插入User -->
+	<insert id="insertUser" parameterType="User">
+		insert into user (id,username,password,name,user_tel) values (#{id},#{username},#{password},#{name},#{user_tel});
+	</insert>
+	
+	<!-- 插入User 参数为hashmap-->
+	<insert id="insertUserForMap" parameterType="hashmap">
+		insert into user (id,username,password,name,user_tel) values (#{id},#{username},#{password},#{name},#{user_tel});
+	</insert>
+	
+	<!-- 根据id删除User -->
+	<delete id="deleteUserById" parameterType="string">
+		delete from user where id = #{id}
+	</delete>
+	
+	<!-- 根据id更新User -->
+	<update id="updateUserById" parameterType="User">
+		update user set username = #{username},password = #{password},name = #{name},user_tel = #{user_tel} where id = #{id}
+	</update>
+	
+	<!-- 动态更新user -->
+	<update id="updateUserByCondition" parameterType="User">
+		update user 
+		<set>
+			<if test="username != null">
+				username = #{useruame},
+			</if>
+			<if test="password != null">
+				password = #{password}
+			</if>
+			<if test="name != null">
+				name = #{name}
+			</if>
+			<if test="user_tel != null">
+				user_tel = #{user_tel}
+			</if>
+		</set>
+		where id = #{id}
+	</update>
+	
+	<!-- 根据id更新User 参数为map
+	<update id="updateUserByIdForMap" parameterType="hashmap">
+		update user set name = #{userName},address = #{address} where id = #{id}
+	</update>
+	-->
+	
+</mapper>

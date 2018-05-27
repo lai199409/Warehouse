@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hm.entity.Purchasers">
+
+	<resultMap type="Purchasers" id="purchasersMap">
+		<id column="id" property="id"/>
+		<result column="purchasers_name" property="purchasers_name"/>
+		<result column="purchasers_address" property="purchasers_address"/>
+		<result column="purchasers_contact" property="purchasers_contact"/>
+		<result column="purchasers_contact_tel" property="purchasers_contact_tel"/>
+		<result column="purchasers_products" property="purchasers_products"/>
+	</resultMap>
+	
+	<sql id="mysql">
+		id,purchasers_name,purchasers_address,purchasers_contact,purchasers_contact_tel,purchasers_products
+	</sql>
+	
+	<!-- 根据id查询User -->
+	<!-- id:当前sql语句的唯一标示  parameterType：参数类型 resultType:结果类型(返回值类型)-->
+	<select id="selectPurchasersById" parameterType="Integer" resultMap="purchasersMap">
+		select <include refid="mysql"/> from purchasers where id = #{id}
+	</select>
+	
+	<!-- 查询所有User -->
+	<select id="selectAllPurchaserss" resultType="Purchasers">
+		select <include refid="mysql"/> from purchasers
+	</select>
+	
+	<!-- 根据id查询User，返回值为：Map -->
+	<select id="selectPurchasersByIdForMap" parameterType="string" resultType="hashmap">
+		select <include refid="mysql"/> from purchasers where id = #{id}
+	</select>
+	
+	<!-- 动态sql -->
+	<select id="selectPurchasersByCondition" parameterType="Purchasers" resultType="Purchasers">
+		select id,purchasers_name,purchasers_address,purchasers_contact,purchasers_contact_tel,purchasers_products from purchasers where 1=1
+		<if test="id != null">
+			and id = #{id}
+		</if>
+		<!-- userName指的是实体的属性 -->
+		<if test="purchasers_name != null">
+			and purchasers_name = #{purchasers_name}
+		</if>
+		<if test="purchasers_address != null">
+			and purchasers_address = #{purchasers_address}
+		</if>
+		<if test="purchasers_contact != null">
+			and purchasers_contact = #{purchasers_contact}
+		</if>
+		<if test="purchasers_contact_tel != null">
+			and purchasers_contact_tel = #{purchasers_contact_tel}
+		</if>
+		<if test="purchasers_products != null">
+			and purchasers_products = #{purchasers_products}
+		</if>
+	</select>
+	
+	<!-- 动态sql 
+	<select id="selectUserByCondition2" parameterType="User" resultType="User">
+		select id,name as userName ,address from user
+		<where>
+			<if test="id != null">
+			   id = #{id}
+			</if>
+			 userName指的是实体的属性
+			<if test="userName != null">
+				and name = #{userName}
+			</if>
+			<if test="address != null">
+				and address = #{address}
+			</if>
+		</where>
+	</select>
+	-->
+	
+	<!-- 插入User -->
+	<insert id="insertPurchasers" parameterType="Purchasers">
+		insert into purchasers (purchasers_name,purchasers_address,purchasers_contact,purchasers_contact_tel,purchasers_products) values (#{purchasers_name},#{purchasers_address},#{purchasers_contact},#{purchasers_contact_tel},#{purchasers_products});
+	</insert>
+	
+	<!-- 插入User 参数为hashmap-->
+	<insert id="insertPurchasersForMap" parameterType="hashmap">
+		insert into purchasers (purchasers_name,purchasers_address,purchasers_contact,purchasers_contact_tel,purchasers_products) values (#{purchasers_name},#{purchasers_address},#{purchasers_contact},#{purchasers_contact_tel},#{purchasers_products});
+	</insert>
+	
+	<!-- 根据id删除User -->
+	<delete id="deletePurchasersById" parameterType="string">
+		delete from purchasers where id = #{id}
+	</delete>
+	
+	<!-- 根据id更新User -->
+	<update id="updatePurchasersById" parameterType="Purchasers">
+		update purchasers set purchasers_name = #{purchasers_name},purchasers_address = #{purchasers_address},purchasers_contact = #{purchasers_contact},purchasers_contact_tel = #{purchasers_contact_tel},purchasers_products = #{purchasers_products} where id = #{id}
+	</update>
+	
+	<!-- 动态更新user -->
+	<update id="updatePurchasersByCondition" parameterType="Purchasers">
+		update purchasers 
+		<set>
+			<if test="purchasers_name != null">
+				purchasers_name = #{purchasers_name},
+			</if>
+			<if test="purchasers_address != null">
+				purchasers_address = #{purchasers_address}
+			</if>
+			<if test="purchasers_contact != null">
+				purchasers_contact = #{purchasers_contact}
+			</if>
+			<if test="purchasers_contact_tel != null">
+				purchasers_contact_tel = #{purchasers_contact_tel}
+			</if>
+			<if test="purchasers_products != null">
+				purchasers_products = #{purchasers_products}
+			</if>
+		</set>
+		where id = #{id}
+	</update>
+	
+	<!-- 根据id更新User 参数为map
+	<update id="updateUserByIdForMap" parameterType="hashmap">
+		update user set name = #{userName},address = #{address} where id = #{id}
+	</update>
+	-->
+	
+</mapper>

@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hm.entity.Product_class">
+
+	<resultMap type="Product_class" id="product_classMap">
+		<id column="id" property="id"/>
+		<result column="product_category" property="product_category"/>
+		<result column="category_id" property="category_id"/>
+	</resultMap>
+	
+	<sql id="mysql">
+		id,product_category,category_id
+	</sql>
+	
+	<!-- 根据id查询User -->
+	<!-- id:当前sql语句的唯一标示  parameterType：参数类型 resultType:结果类型(返回值类型)-->
+	<select id="selectProduct_classById" parameterType="Integer" resultMap="product_classMap">
+		select <include refid="mysql"/> from product_class where id = #{id}
+	</select>
+	
+	<!-- 查询所有User -->
+	<select id="selectAllProduct_classs" resultType="Product_class">
+		select <include refid="mysql"/> from product_class
+	</select>
+	
+	<!-- 根据id查询User，返回值为：Map -->
+	<select id="selectProduct_classByIdForMap" parameterType="string" resultType="hashmap">
+		select <include refid="mysql"/> from product_class where id = #{id}
+	</select>
+	
+	<!-- 动态sql -->
+	<select id="selectProduct_classByCondition" parameterType="Product_class" resultType="Product_class">
+		select id,product_category,category_id from product_class where 1=1
+		<if test="id != null">
+			and id = #{id}
+		</if>
+		<!-- userName指的是实体的属性 -->
+		<if test="product_category != null">
+			and product_category = #{product_category}
+		</if>
+		<if test="category_id != null">
+			and category_id = #{category_id}
+		</if>
+	</select>
+	
+	<!-- 动态sql 
+	<select id="selectUserByCondition2" parameterType="User" resultType="User">
+		select id,name as userName ,address from user
+		<where>
+			<if test="id != null">
+			   id = #{id}
+			</if>
+			 userName指的是实体的属性
+			<if test="userName != null">
+				and name = #{userName}
+			</if>
+			<if test="address != null">
+				and address = #{address}
+			</if>
+		</where>
+	</select>
+	-->
+	
+	<!-- 插入User -->
+	<insert id="insertProduct_class" parameterType="Product_class">
+		insert into product_class (product_category,category_id) values (#{product_category},#{category_id});
+	</insert>
+	
+	<!-- 插入User 参数为hashmap-->
+	<insert id="insertProduct_classForMap" parameterType="hashmap">
+		insert into product_class (product_category,category_id) values (#{product_category},#{category_id});
+	</insert>
+	
+	<!-- 根据id删除User -->
+	<delete id="deleteProduct_classById" parameterType="string">
+		delete from product_class where id = #{id}
+	</delete>
+	
+	<!-- 根据id更新User -->
+	<update id="updateProduct_classById" parameterType="Product_class">
+		update product_class set product_category = #{product_category},category_id = #{category_id} where id = #{id}
+	</update>
+	
+	<!-- 动态更新user -->
+	<update id="updateProduct_classByCondition" parameterType="Product_class">
+		update Product_class 
+		<set>
+			<if test="product_category != null">
+				product_category = #{product_category},
+			</if>
+			<if test="category_id != null">
+				category_id = #{category_id}
+			</if>
+		</set>
+		where id = #{id}
+	</update>
+	
+	<!-- 根据id更新User 参数为map
+	<update id="updateUserByIdForMap" parameterType="hashmap">
+		update user set name = #{userName},address = #{address} where id = #{id}
+	</update>
+	-->
+	
+</mapper>

@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<!--
+	在主页面展示，由于主页面已经有public.js引入了，所以不需要再引入
+	 <script type="text/javascript" src="../../public/public.js"></script>
+ -->
+  <script type="text/javascript" src="/HM/js/loginfilter.js" ></script>
+  <script type="text/javascript" src="/HM/js/customer.js" ></script>
+</head>
+<body>
+
+	
+	<div class="container-fluid" id="left">
+		<div class="row clearfix">
+			<div class="col-md-11 column">
+				<div class="tabbable" id="tabs-928893">
+					<ul class="nav nav-tabs">
+						<li id="gys" class="active">
+							 <a href="#panel-681" data-toggle="tab"><i class=" glyphicon glyphicon-bookmark"></i>供应商</a>
+						</li>
+						<li id="cgs">
+							 <a href="#panel-876806" data-toggle="tab"><i class=" glyphicon glyphicon-bookmark"></i>采购商</a>
+						</li>
+					</ul>
+					<div class="tab-content">
+						<div class="tab-pane active" id="panel-681">
+						</div>
+						<div class="tab-pane" id="panel-876806">
+						</div>
+						<div class="tab-pane" id="panel-876807">
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-1 column">
+				<button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal"><i class="glyphicon glyphicon-user"></i>添加</button>
+					<!-- 模态框（Modal） -->
+					<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+					    <div class="modal-dialog">
+					        <div class="modal-content">
+					            <div class="modal-header">
+					                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					                <h4 class="modal-title" id="myModalLabel">添加客户</h4>
+					            </div>
+					            <div class="modal-body">
+					            	<div class="form-group">
+										 <label for="exampleInputEmail1">客户公司名称</label><input class="form-control" id="khgsmc" type="text" />
+									</div>
+									<div class="form-group">
+										<label for="exampleInputEmail1">客户类型</label>
+										<select class="form-control" id="custype">
+									  	  <option>请选择</option> 
+									      <option>供应商</option> 
+									      <option>采购商</option> 
+								      	</select>
+									</div>
+									<div class="form-group">
+										 <label for="exampleInputEmail1">供应/采购产品</label><input class="form-control" id="sp" type="text" />
+									</div>
+									<div class="form-group">
+										 <label for="exampleInputEmail1">联系人</label><input class="form-control" id="lxr" type="text" />
+									</div>
+									<div class="form-group">
+										 <label for="exampleInputEmail1">联系电话</label><input class="form-control" id="lxdh" type="text" />
+									</div>
+									<div class="form-group">
+										 <label for="exampleInputEmail1">地址</label><input class="form-control" id="dz" type="text" />
+									</div>
+					            </div>
+					            <div class="modal-footer">
+					                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+					                <button type="button" class="btn btn-primary" id="addcustomer">添加</button>
+					            </div>
+					        </div><!-- /.modal-content -->
+					    </div><!-- /.modal -->
+					</div>
+			 	<button type="button" class="btn btn-default" id="returnindex"><i class="glyphicon glyphicon-arrow-left"></i>返回</button>
+			</div>
+		</div>
+		
+		<div class="row clearfix">
+			<div class="col-md-12 column">
+				<table class="table">
+					<thead>
+						<tr>
+							<th>
+								<i class="glyphicon glyphicon-list"></i>公司名称
+							</th>
+							<th>
+								<i class="glyphicon glyphicon-tags"></i>产品
+							</th>
+							<th>
+								<i class="glyphicon glyphicon-user"></i>联系人
+							</th>
+							<th>
+								<i class="glyphicon glyphicon-earphone"></i>联系电话
+							</th>
+							<th>
+								<i class="glyphicon glyphicon-list-alt"></i>公司地址
+							</th>
+							<th>
+								操作
+							</th>
+						</tr>
+					</thead>
+					<tbody id="customertable">
+
+					</tbody>
+				</table>
+			</div>
+		</div>
+		
+		<!--<div class="row clearfix">
+			<div class="col-md-12 column">
+				<ul class="pagination">
+					<li>
+						 <a href="#">上一页</a>
+					</li>
+					<li>
+						 <a href="#">1</a>
+					</li>
+					<li>
+						 <a href="#">2</a>
+					</li>
+					<li>
+						 <a href="#">3</a>
+					</li>
+					<li>
+						 <a href="#">4</a>
+					</li>
+					<li>
+						 <a href="#">5</a>
+					</li>
+					<li>
+						 <a href="#">6</a>
+					</li>
+					<li>
+						 <a href="#">7</a>
+					</li>
+					<li>
+						 <a href="#">8</a>
+					</li>
+					<li>
+						 <a href="#">9</a>
+					</li>
+					<li>
+						 <a href="#">10</a>
+					</li>
+					<li>
+						 <a href="#">下一页</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>-->
+
+
+	<script type="text/javascript">
+       $(document).ready(function(){
+    	   $("#returnindex").click(function(){
+    		  // $("#leftview").load("./storagemanagement/storage.html");
+    		  window.location.reload();
+    	   });
+        });
+	</script>
+
+</body>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>登录</title>
+<script type="text/javascript" src="public/public.js"></script>
+</head>
+<body>
+	
+	
+	<div class="container">
+		<div class="row clearfix">
+			<div class="col-md-12 column">
+				<div class="row clearfix">
+					<div class="col-md-12 column">
+						<div class="page-header">
+							<img class="img-responsive" alt="216x94" src="img/logo/logo.jpg" id="logo"/>
+							<h1>
+								深圳市HM有限公司 <small>仓库管理系统</small>
+							</h1>
+						</div>
+					</div>
+				</div>
+				<div class="row clearfix">
+					<div class="col-md-4 column">
+					</div>
+					<div class="col-md-4 column">
+						<div class="row clearfix">
+							<div class="col-md-2 column">
+							</div>
+							<div class="col-md-8 column">
+								<form role="form">
+									<div class="form-group">
+										 <label for="exampleInputEmail1">用户名</label><input class="form-control" id="username" type="text" />
+									</div>
+									<div class="form-group">
+										 <label for="exampleInputPassword1">密码</label><input class="form-control" id="password" type="password" />
+									</div>
+									<!--<div class="checkbox">
+										 <label><input type="checkbox" />记住密码</label>
+									</div>--> 
+									<button type="button" class="btn btn-default" id="login">登录</button>
+								</form>
+							</div>
+							<div class="col-md-2 column">
+							</div>
+						</div>
+					</div>
+					<div class="col-md-4 column">
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+		<script type="text/javascript">
+			
+					$("#login").click(function(){
+						var username = $("#username").val();
+						var password = $("#password").val();
+						$.ajax({
+							type:"get",
+							url:"http://127.0.0.1:8080/SSM_HM/login?username="+username+"&&password="+password,
+							async:true,
+							dataType:"text",
+							success:function(data){
+								data = decodeURIComponent(data);
+								if(data==0){
+									alert("用户名或密码错误");
+								}else{
+									var msg = JSON.parse(data);
+									username = msg[0].name;
+									window.sessionStorage.setItem("login","true");
+									window.sessionStorage.setItem("username",username);
+									window.location.href = "page/index.html";
+								}
+								
+							}
+							
+							
+						});
+					});
+		</script>
+
+</body>
+</html>

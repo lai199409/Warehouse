@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+				         http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+				         http://www.springframework.org/schema/context
+				         http://www.springframework.org/schema/context/spring-context-3.0.xsd
+				         http://www.springframework.org/schema/tx
+				         http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
+				         http://www.springframework.org/schema/aop 
+				         http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+	
+	<bean id="userService" class="com.hm.service.impl.UserServiceImpl">
+		<property name="userDao" ref="userDao"></property>
+	</bean>
+	
+	<bean id="cylinderService" class="com.hm.service.impl.CylinderServiceImpl">
+		<property name="cylinderDao" ref="cylinderDao"></property>
+	</bean>
+	
+	<bean id="operation_logService" class="com.hm.service.impl.Operation_logServiceImpl">
+		<property name="operation_logDao" ref="operation_logDao"></property>
+	</bean>
+	
+	<bean id="outgoing_recordService" class="com.hm.service.impl.Outgoing_recordServiceImpl">
+		<property name="outgoing_recordDao" ref="outgoing_recordDao"></property>
+	</bean>
+	
+	<bean id="product_classService" class="com.hm.service.impl.Product_classServiceImpl">
+		<property name="product_classDao" ref="product_classDao"></property>
+	</bean>
+	
+	<bean id="purchasersService" class="com.hm.service.impl.PurchasersServiceImpl">
+		<property name="purchasersDao" ref="purchasersDao"></property>
+	</bean>
+	
+	<bean id="seal_componentsService" class="com.hm.service.impl.Seal_componentsServiceImpl">
+		<property name="seal_componentsDao" ref="seal_componentsDao"></property>
+	</bean>
+	
+	<bean id="solenoid_valveService" class="com.hm.service.impl.Solenoid_valveServiceImpl">
+		<property name="solenoid_valveDao" ref="solenoid_valveDao"></property>
+	</bean>
+	
+	<bean id="storage_recordService" class="com.hm.service.impl.Storage_recordServiceImpl">
+		<property name="storage_recordDao" ref="storage_recordDao"></property>
+	</bean>
+	
+	<bean id="supplierService" class="com.hm.service.impl.SupplierServiceImpl">
+		<property name="supplierDao" ref="supplierDao"></property>
+	</bean>
+	
+</beans>

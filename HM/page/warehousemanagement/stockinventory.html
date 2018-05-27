@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<!--库存盘点
+	在主页面展示，由于主页面已经有public.js引入了，所以不需要再引入
+	 <script type="text/javascript" src="../../public/public.js"></script>
+ -->
+  <script type="text/javascript" src="/HM/js/loginfilter.js" ></script>
+  <script type="text/javascript" src="/HM/js/warehouse.js" ></script>
+</head>
+<body>
+
+
+	<div class="container-fluid" id="left">
+		<div class="row clearfix">
+			<div class="col-md-11 column">
+				<div class="tabbable" id="tabs-928893">
+					<ul class="nav nav-tabs">
+						<li id="qigang" class="active">
+							 <a href="#panel-681" data-toggle="tab"><i class=" glyphicon glyphicon-bookmark"></i>汽缸</a>
+						</li>
+						<li id="dianchifa">
+							 <a href="#panel-876806" data-toggle="tab"><i class=" glyphicon glyphicon-bookmark"></i>电磁阀</a>
+						</li>
+						<li id="mifengjian">
+							 <a href="#panel-876807" data-toggle="tab"><i class="glyphicon glyphicon-bookmark"></i>密封件</a>
+						</li>
+					</ul>
+					<div class="tab-content">
+						<div class="tab-pane active" id="panel-681">
+						</div>
+						<div class="tab-pane" id="panel-876806">
+						</div>
+						<div class="tab-pane" id="panel-876807">
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-1 column">
+			 	<button type="button" class="btn btn-default" id="returnindex"><i class="glyphicon glyphicon-arrow-left"></i>返回</button>
+			</div>
+		</div>
+		
+		<div class="row clearfix">
+			<div class="col-md-12 column">
+				<table class="table">
+					<thead>
+						<tr>
+							<th>
+								<i class="glyphicon glyphicon-list"></i>产品名称
+							</th>
+							<th>
+								<i class="glyphicon glyphicon-tags"></i>产品类型
+							</th>
+							<th>
+								<i class="glyphicon glyphicon-th"></i>产品数量
+							</th>
+							<th>
+								<i class="glyphicon glyphicon-jpy"></i>产品价格
+							</th>
+							<th>
+								<i class="glyphicon glyphicon-list-alt"></i>详情信息
+							</th>
+						</tr>
+					</thead>
+					<tbody id="displaytable">
+
+					</tbody>
+				</table>
+			</div>
+		</div>
+		
+		<!--<div class="row clearfix">
+			<div class="col-md-12 column">
+				<ul class="pagination">
+					<li>
+						 <a href="#">上一页</a>
+					</li>
+					<li>
+						 <a href="#">1</a>
+					</li>
+					<li>
+						 <a href="#">2</a>
+					</li>
+					<li>
+						 <a href="#">3</a>
+					</li>
+					<li>
+						 <a href="#">4</a>
+					</li>
+					<li>
+						 <a href="#">5</a>
+					</li>
+					<li>
+						 <a href="#">6</a>
+					</li>
+					<li>
+						 <a href="#">7</a>
+					</li>
+					<li>
+						 <a href="#">8</a>
+					</li>
+					<li>
+						 <a href="#">9</a>
+					</li>
+					<li>
+						 <a href="#">10</a>
+					</li>
+					<li>
+						 <a href="#">下一页</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>-->
+
+
+	<script type="text/javascript">
+       $(document).ready(function(){
+    	   $("#returnindex").click(function(){
+    		  // $("#leftview").load("./storagemanagement/storage.html");
+    		  window.location.reload();
+    	   });
+        });
+	</script>
+
+
+</body>
+</html>

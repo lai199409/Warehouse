@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<!--
+	在主页面展示，由于主页面已经有public.js引入了，所以不需要再引入
+	 <script type="text/javascript" src="../../public/public.js"></script>
+ -->
+  <script type="text/javascript" src="/HM/js/loginfilter.js" ></script>
+  <script type="text/javascript" src="/HM/js/storage.js" ></script>
+</head>
+<body>
+
+	
+	<div class="container-fluid" id="left">
+		<div class="row clearfix">
+			<div class="col-md-11 column">
+			</div>
+			<div class="col-md-1 column">
+			 	<button type="button" class="btn btn-default" id="returnindex"><i class="glyphicon glyphicon-arrow-left"></i>返回</button>
+			</div>
+		</div>
+		
+		<div class="row clearfix">
+			<div class="col-md-12 colum">
+				<table class="table">
+					<thead>
+						<tr>
+							<!--<th>
+								<i class="glyphicon glyphicon-picture"></i>产品缩略图
+							</th>-->
+							<th>
+								<i class="glyphicon glyphicon-list"></i>产品名称
+							</th>
+							<th>
+								<i class="glyphicon glyphicon-tags"></i>产品类型
+							</th>
+							<th>
+								<i class="glyphicon glyphicon-time"></i>入库时间
+							</th>
+							<th>
+								<i class="glyphicon glyphicon-th"></i>入库数量
+							</th>
+							<!--<th>
+								<i class="glyphicon glyphicon-list-alt"></i>详细信息
+							</th>-->
+						</tr>
+					</thead>
+					<tbody id="storagelisttable">
+						
+					</tbody>
+				</table>
+			</div>
+		</div>
+		
+		<!--<div class="row clearfix">
+			<div class="col-md-12 colum">
+				<ul class="pagination">
+					<li>
+						 <a href="#">上一页</a>
+					</li>
+					<li>
+						 <a href="#">1</a>
+					</li>
+					<li>
+						 <a href="#">2</a>
+					</li>
+					<li>
+						 <a href="#">3</a>
+					</li>
+					<li>
+						 <a href="#">4</a>
+					</li>
+					<li>
+						 <a href="#">5</a>
+					</li>
+					<li>
+						 <a href="#">6</a>
+					</li>
+					<li>
+						 <a href="#">7</a>
+					</li>
+					<li>
+						 <a href="#">8</a>
+					</li>
+					<li>
+						 <a href="#">9</a>
+					</li>
+					<li>
+						 <a href="#">10</a>
+					</li>
+					<li>
+						 <a href="#">下一页</a>
+					</li>
+				</ul>
+			</div>
+		</div>-->
+	</div>
+	
+	<script type="text/javascript">
+       $(document).ready(function(){
+    	   $("#returnindex").click(function(){
+    		  // $("#leftview").load("./storagemanagement/storage.html");
+    		  window.location.reload();
+    	   });
+    	   
+    	   $.ajax({
+				type:"post",
+				url:"http://127.0.0.1:8080/SSM_HM/storagelist",
+				async:true,
+				dataType:"text",
+				success:function(data){
+					data = decodeURIComponent(data);
+					data = JSON.parse(data);
+					var htmlstr = null;
+					for(var i=0;i<data.length;i++){
+						var typename = data[i]["category_id"];
+						if( typename == "1" ){
+							typename = "气缸";
+						}else if( typename == "2" ){
+							typename = "电磁阀";
+						}else if( typename == "3" ){
+							typename = "密封件";
+						}//<td><a href='#'><i class='glyphicon glyphicon-search'></i>查看</a></td>
+						htmlstr += "<tr class='info'><td style='display: none;'>"+data[i]["id"]+"</td><td>"+data[i]["product_name"]+"</td><td>"+typename+"</td><td>"+data[i]["storage_date"]+"</td><td>"+data[i]["storage_number"]+"</td><td style='display: none;'>"+data[i]["storage_price"]+"</td></tr>";
+					}
+					$("#storagelisttable").append(htmlstr);
+				}
+			});
+    	   
+        });
+	</script>
+
+</body>
+</html>

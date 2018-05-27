@@ -1,0 +1,15 @@
+@CHARSET "UTF-8";
+.panel-default{background: #FFFFCC;}/*左侧菜单子菜单背景颜色*/
+.panel-heading:HOVER{background: #CCCCFF;}/*左侧菜单鼠标移入背景颜色*/
+.panel-body:HOVER {background: #CCCCFF;}/*左侧菜单子菜单鼠标移入背景颜色*/
+.jumbotron{position: relative;}/*修改左侧展示页面子div的位置，便于实现页面移出效果*/
+.container-fluid{position: relative;}/*修改点击菜单后左侧展示页面div的位置，便于实现页面移出效果*/
+#header{background: #FFFFFF;}/*头部，logo、“仓库管理系统”背景颜色*/
+/*#logo{background-color: #99CCCC;}*/
+body{background: #2AA8D9;}/*页面背景颜色*/
+/*#leftviwe{background: #FFFFFF;}*/
+#left{background: #FFFFFF;}/*左侧子菜单点击后，右边页面背景颜色，覆盖body蓝色背景，变成白色*/
+.nav li:HOVER{background: #CCCCFF;}/*导航菜单鼠标移入背景颜色*/
+.dropdown-menu{background: #FFFFCC;}/*导航菜单中的下拉菜单背景颜色*/
+.dropdown-menu li a:HOVER{background: #CCCCFF;}/*导航菜单中下拉菜单鼠标移入背景颜色*/
+#login{width: 230px;height: 34px;}/*设置登录按钮大小*/

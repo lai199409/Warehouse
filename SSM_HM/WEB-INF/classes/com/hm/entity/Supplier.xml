@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hm.entity.Supplier">
+
+	<resultMap type="Supplier" id="supplierMap">
+		<id column="id" property="id"/>
+		<result column="supplier_name" property="supplier_name"/>
+		<result column="supplier_address" property="supplier_address"/>
+		<result column="supplier_contact" property="supplier_contact"/>
+		<result column="supplier_contact_tel" property="supplier_contact_tel"/>
+		<result column="supply_products" property="supply_products"/>
+	</resultMap>
+	
+	<sql id="mysql">
+		id,supplier_name,supplier_address,supplier_contact,supplier_contact_tel,supply_products
+	</sql>
+	
+	<!-- 根据id查询User -->
+	<!-- id:当前sql语句的唯一标示  parameterType：参数类型 resultType:结果类型(返回值类型)-->
+	<select id="selectSupplierById" parameterType="Integer" resultMap="supplierMap">
+		select <include refid="mysql"/> from supplier where id = #{id}
+	</select>
+	
+	<!-- 查询所有User -->
+	<select id="selectAllSuppliers" resultType="Supplier">
+		select <include refid="mysql"/> from supplier
+	</select>
+	
+	<!-- 根据id查询User，返回值为：Map -->
+	<select id="selectSupplierByIdForMap" parameterType="string" resultType="hashmap">
+		select <include refid="mysql"/> from supplier where id = #{id}
+	</select>
+	
+	<!-- 动态sql -->
+	<select id="selectSupplierByCondition" parameterType="Supplier" resultType="Supplier">
+		select id,supplier_name,supplier_address,supplier_contact,supplier_contact_tel,supply_products from supplier where 1=1
+		<if test="id != null">
+			and id = #{id}
+		</if>
+		<!-- userName指的是实体的属性 -->
+		<if test="supplier_name != null">
+			and supplier_name = #{supplier_name}
+		</if>
+		<if test="supplier_address != null">
+			and supplier_address = #{supplier_address}
+		</if>
+		<if test="supplier_contact != null">
+			and supplier_contact = #{supplier_contact}
+		</if>
+		<if test="supplier_contact_tel != null">
+			and supplier_contact_tel = #{supplier_contact_tel}
+		</if>
+		<if test="supply_products != null">
+			and supply_products = #{supply_products}
+		</if>
+	</select>
+	
+	<!-- 动态sql 
+	<select id="selectUserByCondition2" parameterType="User" resultType="User">
+		select id,name as userName ,address from user
+		<where>
+			<if test="id != null">
+			   id = #{id}
+			</if>
+			 userName指的是实体的属性
+			<if test="userName != null">
+				and name = #{userName}
+			</if>
+			<if test="address != null">
+				and address = #{address}
+			</if>
+		</where>
+	</select>
+	-->
+	
+	<!-- 插入User -->
+	<insert id="insertSupplier" parameterType="Supplier">
+		insert into supplier (supplier_name,supplier_address,supplier_contact,supplier_contact_tel,supply_products) values (#{supplier_name},#{supplier_address},#{supplier_contact},#{supplier_contact_tel},#{supply_products});
+	</insert>
+	
+	<!-- 插入User 参数为hashmap-->
+	<insert id="insertSupplierForMap" parameterType="hashmap">
+		insert into supplier (supplier_name,supplier_address,supplier_contact,supplier_contact_tel,supply_products) values (#{supplier_name},#{supplier_address},#{supplier_contact},#{supplier_contact_tel},#{supply_products});
+	</insert>
+	
+	<!-- 根据id删除User -->
+	<delete id="deleteSupplierById" parameterType="string">
+		delete from supplier where id = #{id}
+	</delete>
+	
+	<!-- 根据id更新User -->
+	<update id="updateSupplierById" parameterType="Supplier">
+		update supplier set supplier_name = #{supplier_name},supplier_address = #{supplier_address},supplier_contact = #{supplier_contact},supplier_contact_tel = #{supplier_contact_tel},supply_products = #{supply_products} where id = #{id}
+	</update>
+	
+	<!-- 动态更新user -->
+	<update id="updateSupplierByCondition" parameterType="Supplier">
+		update supplier 
+		<set>
+			<if test="supplier_name != null">
+				supplier_name = #{supplier_name},
+			</if>
+			<if test="supplier_address != null">
+				supplier_address = #{supplier_address}
+			</if>
+			<if test="supplier_contact != null">
+				supplier_contact = #{supplier_contact}
+			</if>
+			<if test="supplier_contact_tel != null">
+				supplier_contact_tel = #{supplier_contact_tel}
+			</if>
+			<if test="supply_products != null">
+				supply_products = #{supply_products}
+			</if>
+		</set>
+		where id = #{id}
+	</update>
+	
+	<!-- 根据id更新User 参数为map
+	<update id="updateUserByIdForMap" parameterType="hashmap">
+		update user set name = #{userName},address = #{address} where id = #{id}
+	</update>
+	-->
+	
+</mapper>

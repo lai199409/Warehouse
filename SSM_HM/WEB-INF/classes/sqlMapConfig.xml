@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<!-- <settings>  
+        <setting name="logImpl" value="LOG4J"/>  
+    </settings> -->
+    
+	<typeAliases>
+		<typeAlias type="com.hm.entity.User" alias="User"/>
+		<typeAlias type="com.hm.entity.Cylinder" alias="Cylinder"/>
+		<typeAlias type="com.hm.entity.Operation_log" alias="Operation_log"/>
+		<typeAlias type="com.hm.entity.Outgoing_record" alias="Outgoing_record"/>
+		<typeAlias type="com.hm.entity.Product_class" alias="Product_class"/>
+		<typeAlias type="com.hm.entity.Purchasers" alias="Purchasers"/>
+		<typeAlias type="com.hm.entity.Seal_components" alias="Seal_components"/>
+		<typeAlias type="com.hm.entity.Solenoid_valve" alias="Solenoid_valve"/>
+		<typeAlias type="com.hm.entity.Storage_record" alias="Storage_record"/>
+		<typeAlias type="com.hm.entity.Supplier" alias="Supplier"/>
+	</typeAliases>
+	
+</configuration>
